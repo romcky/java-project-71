@@ -1,14 +1,12 @@
 package hexlet.code;
 
-import java.util.Map;
+import java.util.TreeSet;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.TreeSet;
-import java.util.TreeMap;
 
 public class Differ {
 
-    public static String generate(String filePath1, String filePath2) 
+    public static String generate(String filePath1, String filePath2)
             throws Exception {
         String fileData1 = new String(Files.readAllBytes(Path.of(filePath1)));
         String fileData2 = new String(Files.readAllBytes(Path.of(filePath2)));
