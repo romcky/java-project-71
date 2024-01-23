@@ -7,6 +7,9 @@ run-json:
 run-help:
 	./build/install/app/bin/app -h
 
+jacoco:
+	./gradlew jacocoTestReport
+
 .PHONY: build
 
 
