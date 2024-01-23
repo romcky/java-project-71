@@ -35,6 +35,6 @@ public class Differ {
             }
         }
 
-        return Parser.mapToJson(diff);
+        return Parser.mapToStylish(diff);
     }
 }
