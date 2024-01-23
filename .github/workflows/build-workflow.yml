@@ -5,6 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-        working-directory: ./app
-      - run: make build
+        run: |
+          cd app
+          make build
 
