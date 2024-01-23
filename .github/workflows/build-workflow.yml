@@ -6,9 +6,10 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Setyp Java
-        uses: oracle-actions/setup-java@v1
+        uses: actions/setup-java@v3
         with:
-          release: 20
+          java-version: '20'
+          distribution: 'oracle'
       - name: Make Build
         run: |
           cd app
