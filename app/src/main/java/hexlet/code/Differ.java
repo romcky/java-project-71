@@ -12,14 +12,19 @@ public class Differ {
             throws Exception {
         String fileData1 = new String(Files.readAllBytes(Path.of(filePath1)));
         String fileData2 = new String(Files.readAllBytes(Path.of(filePath2)));
-        var fileMap1 = Parser.jsonToMap(fileData1);
-        var fileMap2 = Parser.jsonToMap(fileData2);
+
+        var fileType1 = filePath1.split("\\.")[filePath1.split("\\.").length - 1];
+        var fileType2 = filePath2.split("\\.")[filePath2.split("\\.").length - 1];
+
+        var fileMap1 = Parser.createParser(fileType1).parse(fileData1);
+        var fileMap2 = Parser.createParser(fileType2).parse(fileData2);
 
         var allKeys = new TreeSet<String>();
         allKeys.addAll(fileMap1.keySet());
         allKeys.addAll(fileMap2.keySet());
 
         var diff = new LinkedHashMap<String, Object>();
+
         for (var key : allKeys) {
             var value1 = fileMap1.get(key);
             var value2 = fileMap2.get(key);
@@ -35,6 +40,6 @@ public class Differ {
             }
         }
 
-        return Parser.mapToStylish(diff);
+        return Converter.convert(diff);
     }
 }

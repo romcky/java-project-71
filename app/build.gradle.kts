@@ -15,6 +15,7 @@ repositories {
 dependencies {
     implementation("info.picocli:picocli:4.7.5")
     implementation("com.fasterxml.jackson.core:jackson-databind:2.13.3")
+    implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.13.3")
 
     //testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.10.0")
 
