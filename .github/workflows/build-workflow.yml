@@ -4,15 +4,16 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - name: Setyp Java
+      - name: Clone
+        uses: actions/checkout@v3
+      - name: Java
         uses: actions/setup-java@v3
         with:
           java-version: '20'
           distribution: 'oracle'
-      - name: Make Build
+      - name: Build
         run: make -C app build
-      - name: Codeclimate Coverage
+      - name: Jacoco
         uses: paambaati/codeclimate-action@v5.0.0
         env:
           CC_TEST_REPORTER_ID: ${{secrets.CC_TEST_REPORTER_ID}}
