@@ -1,25 +1,19 @@
 package hexlet.code;
 
-import java.util.Map;
-import java.util.function.Function;
+import hexlet.code.formatters.DifferenceFormatter;
+import hexlet.code.formatters.Stylish;
+import hexlet.code.formatters.Plain;
 
 public final class Formatter {
-    private Function<Map<String, Object>, String> formatter;
 
-    private Formatter(Function<Map<String, Object>, String> formatter) {
-        this.formatter = formatter;
-    }
-
-    public static Formatter createFormatter(String type) {
+    public static DifferenceFormatter createFormatter(String type) {
         switch (type) {
             case "stylish":
-                return new Formatter(new Stylish());
+                return new Stylish();
+            case "plain":
+                return new Plain();
             default:
                 throw new IllegalArgumentException("Unknown formatter type: " + type);
         }
-    }
-
-    public String format(Map<String, Object> diff) {
-        return formatter.apply(diff);
     }
 }
