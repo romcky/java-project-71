@@ -7,6 +7,9 @@ test-json-stylish:
 test-json-plain:
 	./build/install/app/bin/app src/test/resources/file5.json src/test/resources/file6.json --format plain
 
+test-json-json:
+	./build/install/app/bin/app src/test/resources/file5.json src/test/resources/file6.json --format json
+
 test-yaml-stylish:
 	./build/install/app/bin/app src/test/resources/file7.yml src/test/resources/file8.yml
 

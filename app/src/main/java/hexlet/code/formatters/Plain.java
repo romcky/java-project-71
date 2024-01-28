@@ -1,18 +1,29 @@
 package hexlet.code.formatters;
 
 import hexlet.code.Difference;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.Comparator;
 
 public class Plain implements DifferenceFormatter {
 
     @Override
-    public String formatDifference(Difference diff) {
-        switch (diff.getInfo()) {
-            case "updated":
+    public String format(List<Difference> diffList) {
+        return diffList.stream()
+            .sorted(Comparator.comparing(Difference::getName))
+            .map(this::toPlain)
+            .filter(str -> !str.isEmpty())
+            .collect(Collectors.joining("\n"));
+    }
+
+    public String toPlain(Difference diff) {
+        switch (diff.getType()) {
+            case Difference.UPDATED:
                 return "Property '" + diff.getName() + "' was updated. From "
                     + formatValue(diff.getOldValue()) + " to " + formatValue(diff.getNewValue());
-            case "removed":
+            case Difference.REMOVED:
                 return  "Property '" + diff.getName() + "' was removed";
-            case "added":
+            case Difference.ADDED:
                 return "Property '" + diff.getName() + "' was added with value: "
                     + formatValue(diff.getNewValue());
             default:

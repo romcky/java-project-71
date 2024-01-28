@@ -2,7 +2,6 @@ plugins {
     application
     checkstyle
     jacoco
-    id("io.freefair.lombok") version "8.4"
 }
 
 group = "hexlet.code"
@@ -16,7 +15,6 @@ dependencies {
     implementation("info.picocli:picocli:4.7.5")
     implementation("com.fasterxml.jackson.core:jackson-databind:2.13.3")
     implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.13.3")
-    implementation("org.apache.commons:commons-collections4:4.4")
 }
 
 application {
