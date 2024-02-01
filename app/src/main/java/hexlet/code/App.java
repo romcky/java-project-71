@@ -24,13 +24,10 @@ public class App implements Callable<Integer> {
     private String filePath2;
 
     @Override
-    public Integer call() {
-        try {
-            var diff = Differ.generate(filePath1, filePath2, format);
-            System.out.println(diff);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public Integer call()
+            throws Exception {
+        var diff = Differ.generate(filePath1, filePath2, format);
+        System.out.println(diff);
         return 0;
     }
 

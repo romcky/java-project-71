@@ -16,6 +16,9 @@ test-yaml-stylish:
 test-yaml-plain:
 	./build/install/app/bin/app src/test/resources/file7.yml src/test/resources/file8.yml --format plain
 
+test-yaml-json:
+	./build/install/app/bin/app src/test/resources/file7.yml src/test/resources/file8.yml --format json
+
 test-help:
 	./build/install/app/bin/app -h
 
