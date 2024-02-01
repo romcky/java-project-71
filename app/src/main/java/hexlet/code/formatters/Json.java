@@ -1,13 +1,18 @@
 package hexlet.code.formatters;
 
-import hexlet.code.Difference;
 import java.util.List;
-import java.util.HashMap;
-import java.util.Comparator;
-import java.util.stream.Collectors;
+import java.util.Map;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-public class Json implements DifferenceFormatter {
+public class Json {
+
+    public static String format(List<Map<String, Object>> diffList)
+            throws JsonProcessingException {
+        return new ObjectMapper().writeValueAsString(diffList);
+    }
+    /*
     private static final ObjectMapper MAPPER = new ObjectMapper();
 
     @Override
@@ -44,4 +49,6 @@ public class Json implements DifferenceFormatter {
             return "";
         }
     }
+
+     */
 }
