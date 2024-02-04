@@ -25,12 +25,10 @@ public class Differ {
 
         var diffList = Difference.getDifferenceList(fileMap1, fileMap2);
 
-        //diffList.stream().forEach(System.out::println);
+        //error in hexlet test !!! generate(file1, file2) where file1 == file2 !!!
         System.out.println("debug: file1: " + filePath1);
         System.out.println("debug: file2: " + filePath2);
 
         return Formatter.format(diffList, formatType);
-        //return Formatter.createFormatter(formatType)
-        //    .format(diffList);
     }
 }

@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 public class Stylish {
 
     public static String format(List<Map<String, Object>> diffList) {
-        //diffList.forEach(System.out::println);
         var lines = diffList.stream()
                 .map(Stylish::toStylish)
                 .filter(line -> !line.isEmpty())
@@ -29,30 +28,4 @@ public class Stylish {
             return "";
         }
     }
-/*
-    @Override
-    public String format(List<Difference> diffList) {
-        return "{\n" + diffList.stream()
-            .sorted(Comparator.comparing(Difference::getName))
-            .map(this::toPlain)
-            .filter(str -> !str.isEmpty())
-            .collect(Collectors.joining("\n")) + "\n}";
-    }
-    public String toPlain(Difference diff) {
-        switch (diff.getType()) {
-            case Difference.UPDATED:
-                return "  - " + diff.getName() + ": " + diff.getOldValue()
-                    + "\n  + " + diff.getName() + ": " + diff.getNewValue();
-            case Difference.UNCHANGED:
-                return "    " + diff.getName() + ": " + diff.getOldValue();
-            case Difference.REMOVED:
-                return  "  - " + diff.getName() + ": " + diff.getOldValue();
-            case Difference.ADDED:
-                return "  + " + diff.getName() + ": " + diff.getNewValue();
-            default:
-                return "";
-        }
-    }
-
- */
 }

@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-
 public class Plain {
 
     public static String format(List<Map<String, Object>> diffList) {
@@ -27,31 +26,8 @@ public class Plain {
             return "";
         }
     }
-/*
-    @Override
-    public String format(List<Difference> diffList) {
-        return diffList.stream()
-            .map(map -> toPlain(map))
-            .filter(str -> !str.isEmpty())
-            .collect(Collectors.joining("\n"));
-    }
 
-    public String toPlain(Difference diff) {
-        switch (diff.getType()) {
-            case Difference.UPDATED:
-                return "Property '" + diff.getName() + "' was updated. From "
-                    + formatValue(diff.getOldValue()) + " to " + formatValue(diff.getNewValue());
-            case Difference.REMOVED:
-                return  "Property '" + diff.getName() + "' was removed";
-            case Difference.ADDED:
-                return "Property '" + diff.getName() + "' was added with value: "
-                    + formatValue(diff.getNewValue());
-            default:
-                return "";
-        }
-    }
-*/
-    private static String formatValue(Object obj) {
+    public static String formatValue(Object obj) {
         if (obj == null) {
             return "null";
         } else if (obj instanceof String) {
