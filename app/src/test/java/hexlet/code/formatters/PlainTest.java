@@ -12,6 +12,6 @@ public class PlainTest {
         Assertions.assertEquals(Plain.formatValue("test"), "'test'");
         Assertions.assertEquals(Plain.formatValue(0), "0");
         Assertions.assertEquals(Plain.formatValue(true), "true");
-        Assertions.assertEquals(Plain.formatValue(List.of(1, 2, 3)), "[complex value]");
+        Assertions.assertEquals(Plain.formatValue(List.of()), "[complex value]");
     }
 }
