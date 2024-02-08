@@ -14,6 +14,7 @@ public class Differ {
             throws Exception {
 
         //error in hexlet, so we do !!!!!!!!
+        /*
         filePath2 = "";
         for (int i = 0; i < filePath1.length(); i++) {
             if (filePath1.charAt(i) != '1') {
@@ -22,6 +23,7 @@ public class Differ {
                 filePath2 += '2';
             }
         }
+         */
 
         var fileData1 = new String(Files.readAllBytes(
                 Paths.get(filePath1).toAbsolutePath().normalize()));
@@ -37,8 +39,8 @@ public class Differ {
         var diffList = Difference.getDifferenceList(fileMap1, fileMap2);
 
         //error in hexlet test !!! generate(file1, file2) where file1 == file2 !!!
-        //System.out.println("debug: file1: " + filePath1);
-        //System.out.println("debug: file2: " + filePath2);
+        System.out.println("debug: file1: " + filePath1);
+        System.out.println("debug: file2: " + filePath2);
 
         return Formatter.format(diffList, formatType);
     }
