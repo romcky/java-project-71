@@ -19,7 +19,7 @@ public class PlainTest {
     @Test
     public void testToPlain() {
         Assertions.assertEquals(
-                Plain.toPlain(Map.of("type", "unchanged", "name", "age", "unchangedValue", 50)),
+                Plain.toPlain(Map.of("type", "unchanged", "name", "age", "unchangedValue", "50")),
                 ""
         );
         Assertions.assertEquals(
@@ -27,7 +27,7 @@ public class PlainTest {
                 "Property 'isEditable' was added with value: true"
         );
         Assertions.assertEquals(
-                Plain.toPlain(Map.of("type", "removed", "name", "pi", "removedValue", 3.14)),
+                Plain.toPlain(Map.of("type", "removed", "name", "pi", "removedValue", "3.14")),
                 "Property 'pi' was removed"
         );
         Assertions.assertEquals(

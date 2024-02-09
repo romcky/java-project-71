@@ -9,7 +9,7 @@ public class StylishTest {
     @Test
     public void testToStylish() {
         Assertions.assertEquals(
-                Stylish.toStylish(Map.of("type", "unchanged", "name", "age", "unchangedValue", 50)),
+                Stylish.toStylish(Map.of("type", "unchanged", "name", "age", "unchangedValue", "50")),
                 "    age: 50"
         );
         Assertions.assertEquals(
@@ -17,7 +17,7 @@ public class StylishTest {
                 "  + isEditable: true"
         );
         Assertions.assertEquals(
-                Stylish.toStylish(Map.of("type", "removed", "name", "pi", "removedValue", 3.14)),
+                Stylish.toStylish(Map.of("type", "removed", "name", "pi", "removedValue", "3.14")),
                 "  - pi: 3.14"
         );
         Assertions.assertEquals(
