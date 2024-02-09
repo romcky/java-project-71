@@ -14,17 +14,25 @@ public class Plain {
     }
 
     public static String toPlain(Map<String, Object> diff) {
+        var builder = new StringBuilder();
         if ("updated".equals(diff.get("type"))) {
-            return "Property '" + diff.get("name") + "' was updated. From "
-                    + formatValue(diff.get("oldValue")) + " to " + formatValue(diff.get("newValue"));
+            builder.append("Property '")
+                    .append(diff.get("name"))
+                    .append("' was updated. From ")
+                    .append(formatValue(diff.get("oldValue")))
+                    .append(" to ")
+                    .append(formatValue(diff.get("newValue")));
         } else if ("removed".equals(diff.get("type"))) {
-            return  "Property '" + diff.get("name") + "' was removed";
+            builder.append("Property '")
+                    .append(diff.get("name"))
+                    .append("' was removed");
         } else if ("added".equals(diff.get("type"))) {
-            return "Property '" + diff.get("name") + "' was added with value: "
-                    + formatValue(diff.get("addedValue"));
-        } else {
-            return "";
+            builder.append("Property '")
+                    .append(diff.get("name"))
+                    .append("' was added with value: ")
+                    .append(formatValue(diff.get("addedValue")));
         }
+        return builder.toString();
     }
 
     public static String formatValue(Object obj) {

@@ -15,17 +15,33 @@ public class Stylish {
     }
 
     public static String toStylish(Map<String, Object> diff) {
+        var builder = new StringBuilder();
         if ("updated".equals(diff.get("type"))) {
-            return "  - " + diff.get("name") + ": " + diff.get("oldValue") + "\n"
-                + "  + " + diff.get("name") + ": " + diff.get("newValue");
+            builder.append("  - ")
+                    .append(diff.get("name"))
+                    .append(": ")
+                    .append(diff.get("oldValue"))
+                    .append("\n")
+                    .append("  + ")
+                    .append(diff.get("name"))
+                    .append(": ")
+                    .append(diff.get("newValue"));
         } else if ("unchanged".equals(diff.get("type"))) {
-            return "    " + diff.get("name") + ": " + diff.get("unchangedValue");
+            builder.append("    ")
+                    .append(diff.get("name"))
+                    .append(": ")
+                    .append(diff.get("unchangedValue"));
         } else if ("removed".equals(diff.get("type"))) {
-            return "  - " + diff.get("name") + ": " + diff.get("removedValue");
+            builder.append("  - ")
+                    .append(diff.get("name"))
+                    .append(": ")
+                    .append(diff.get("removedValue"));
         } else if ("added".equals(diff.get("type"))) {
-            return "  + " + diff.get("name") + ": " + diff.get("addedValue");
-        } else {
-            return "";
+            builder.append("  + ")
+                    .append(diff.get("name"))
+                    .append(": ")
+                    .append(diff.get("addedValue"));
         }
+        return builder.toString();
     }
 }

@@ -1,23 +1,23 @@
 build:
-	./gradlew build
+	./gradlew clean build
 
 test-json-stylish:
-	./build/install/app/bin/app src/test/resources/file5.json src/test/resources/file6.json
+	./build/install/app/bin/app src/test/resources/file1.json src/test/resources/file2.json
 
 test-json-plain:
-	./build/install/app/bin/app src/test/resources/file5.json src/test/resources/file6.json --format plain
+	./build/install/app/bin/app src/test/resources/file1.json src/test/resources/file2.json --format plain
 
 test-json-json:
-	./build/install/app/bin/app src/test/resources/file5.json src/test/resources/file6.json --format json
+	./build/install/app/bin/app src/test/resources/file1.json src/test/resources/file2.json --format json
 
 test-yaml-stylish:
-	./build/install/app/bin/app src/test/resources/file7.yml src/test/resources/file8.yml
+	./build/install/app/bin/app src/test/resources/file1.yml src/test/resources/file2.yml
 
 test-yaml-plain:
-	./build/install/app/bin/app src/test/resources/file7.yml src/test/resources/file8.yml --format plain
+	./build/install/app/bin/app src/test/resources/file1.yml src/test/resources/file2.yml --format plain
 
 test-yaml-json:
-	./build/install/app/bin/app src/test/resources/file7.yml src/test/resources/file8.yml --format json
+	./build/install/app/bin/app src/test/resources/file1.yml src/test/resources/file2.yml --format json
 
 test-help:
 	./build/install/app/bin/app -h

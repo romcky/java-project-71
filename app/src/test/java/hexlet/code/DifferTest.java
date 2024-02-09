@@ -6,74 +6,44 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
 
 class DifferTest {
+    private final String jsonFile1 = "src/test/resources/file1.json";
+    private final String jsonFile2 = "src/test/resources/file2.json";
+    private final String ymlFile1 = "src/test/resources/file1.yml";
+    private final String ymlFile2 = "src/test/resources/file2.yml";
+    private final String diffFileStylish = "src/test/resources/diff.stylish";
+    private final String diffFilePlain = "src/test/resources/diff.plain";
+    private final String diffFileJson = "src/test/resources/diff.json";
 
     @Test
     public void testGenerateJSONStylish() {
         try {
-            String result1 = Differ.generate("file5.json", "file6.json", "stylish");
-            String result2 = Differ.generate("file5.json", "file6.json");
-            String expected = new String(Files.readAllBytes(Path.of("diff-5-6-stylish")));
-            Assertions.assertEquals(result1, expected);
-            Assertions.assertEquals(result2, expected);
+            Assertions.assertEquals(
+                    Differ.generate(jsonFile1, jsonFile2),
+                    Files.readString(Path.of(diffFileStylish))
+            );
+            Assertions.assertEquals(
+                    Differ.generate(jsonFile1, jsonFile2, "plain"),
+                    Files.readString(Path.of(diffFilePlain))
+            );
+            Assertions.assertEquals(
+                    Differ.generate(jsonFile1, jsonFile2, "json"),
+                    Files.readString(Path.of(diffFileJson))
+            );
+            Assertions.assertEquals(
+                    Differ.generate(ymlFile1, ymlFile2),
+                    Files.readString(Path.of(diffFileStylish))
+            );
+            Assertions.assertEquals(
+                    Differ.generate(ymlFile1, ymlFile2, "plain"),
+                    Files.readString(Path.of(diffFilePlain))
+            );
+            Assertions.assertEquals(
+                    Differ.generate(ymlFile1, ymlFile2, "json"),
+                    Files.readString(Path.of(diffFileJson))
+            );
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    @Test
-    public void testGenerateJSONPlain() {
-        try {
-            String result = Differ.generate("file5.json", "file6.json", "plain");
-            String expected = new String(Files.readAllBytes(Path.of("diff-5-6-plain")));
-            Assertions.assertEquals(result, expected);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Test
-    public void testGenerateJSONjson() {
-        try {
-            String result = Differ.generate("file5.json", "file6.json", "json");
-            String expected = new String(Files.readAllBytes(Path.of("diff-5-6-json")));
-            Assertions.assertEquals(result, expected);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Test
-    public void testGenerateYMLStylish() {
-        try {
-            String result1 = Differ.generate("file7.yml", "file8.yml", "stylish");
-            String result2 = Differ.generate("file7.yml", "file8.yml");
-            String expected = new String(Files.readAllBytes(Path.of("diff-7-8-stylish")));
-            Assertions.assertEquals(result1, expected);
-            Assertions.assertEquals(result2, expected);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Test
-    public void testGenerateYMLPlain() {
-        try {
-            String result = Differ.generate("file7.yml", "file8.yml", "plain");
-            String expected = new String(Files.readAllBytes(Path.of("diff-7-8-plain")));
-            Assertions.assertEquals(result, expected);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Test
-    public void testGenerateYMLjson() {
-        try {
-            String result = Differ.generate("file7.yml", "file8.yml", "json");
-            String expected = new String(Files.readAllBytes(Path.of("diff-7-8-json")));
-            Assertions.assertEquals(result, expected);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 }
