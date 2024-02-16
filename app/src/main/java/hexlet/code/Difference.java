@@ -13,19 +13,22 @@ public final class Difference {
             getDifference(String name, Map<String, Object> map1, Map<String, Object> map2) {
         var diff = new HashMap<String, Object>();
         diff.put("name", name);
-        if (!map1.containsKey(name)) {
-            diff.put("type", "added");
-            diff.put("addedValue", map2.get(name));
-        } else if (!map2.containsKey(name)) {
-            diff.put("type", "removed");
-            diff.put("removedValue", map1.get(name));
-        } else if (Objects.equals(map1.get(name), map2.get(name))) {
-            diff.put("type", "unchanged");
-            diff.put("unchangedValue", map1.get(name));
-        } else {
-            diff.put("type", "updated");
-            diff.put("oldValue", map1.get(name));
-            diff.put("newValue", map2.get(name));
+        var type = getDifferenceType(name, map1, map2);
+        diff.put("type", type);
+        switch (type) {
+            case "added":
+                diff.put("addedValue", map2.get(name));
+                break;
+            case "removed":
+                diff.put("removedValue", map1.get(name));
+                break;
+            case "unchanged":
+                diff.put("unchangedValue", map1.get(name));
+                break;
+            case "updated":
+                diff.put("oldValue", map1.get(name));
+                diff.put("newValue", map2.get(name));
+            default:
         }
         return diff;
     }
@@ -39,4 +42,26 @@ public final class Difference {
                 .map(key -> getDifference(key, map1, map2))
                 .collect(Collectors.toList());
     }
+
+    private static String getDifferenceType(String name, Map<String, Object> map1, Map<String, Object> map2)
+        throws IllegalArgumentException {
+        if (name == null) {
+            throw new IllegalArgumentException("'Name' is null");
+        }
+        if (!map1.containsKey(name) && !map2.containsKey(name)) {
+            throw new IllegalArgumentException("No 'name' value in map1 and map2");
+        }
+        if (!map1.containsKey(name)) {
+            return "added";
+        }
+        if (!map2.containsKey(name)) {
+            return "removed";
+        }
+        if (Objects.equals(map1.get(name), map2.get(name))) {
+            return "unchanged";
+        } else {
+            return "updated";
+        }
+    }
+
 }

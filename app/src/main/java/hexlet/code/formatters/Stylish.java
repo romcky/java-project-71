@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class Stylish {
+    private static final int MARKERSPACES = 2;
 
     public static String format(List<Map<String, Object>> diffList) {
         var lines = diffList.stream()
@@ -16,32 +17,40 @@ public class Stylish {
 
     public static String toStylish(Map<String, Object> diff) {
         var builder = new StringBuilder();
-        if ("updated".equals(diff.get("type"))) {
-            builder.append("  - ")
+        String type = (String) diff.get("type");
+        switch (type) {
+            case "updated" -> builder
+                    .append(wrapMarker("-", MARKERSPACES))
                     .append(diff.get("name"))
                     .append(": ")
                     .append(diff.get("oldValue"))
                     .append("\n")
-                    .append("  + ")
+                    .append(wrapMarker("+", MARKERSPACES))
                     .append(diff.get("name"))
                     .append(": ")
                     .append(diff.get("newValue"));
-        } else if ("unchanged".equals(diff.get("type"))) {
-            builder.append("    ")
+            case "unchanged" -> builder
+                    .append(wrapMarker(" ", MARKERSPACES))
                     .append(diff.get("name"))
                     .append(": ")
                     .append(diff.get("unchangedValue"));
-        } else if ("removed".equals(diff.get("type"))) {
-            builder.append("  - ")
+            case "removed" -> builder
+                    .append(wrapMarker("-", MARKERSPACES))
                     .append(diff.get("name"))
                     .append(": ")
                     .append(diff.get("removedValue"));
-        } else if ("added".equals(diff.get("type"))) {
-            builder.append("  + ")
+            case "added" -> builder
+                    .append(wrapMarker("+", MARKERSPACES))
                     .append(diff.get("name"))
                     .append(": ")
                     .append(diff.get("addedValue"));
+            default -> {
+            }
         }
         return builder.toString();
+    }
+
+    private static String wrapMarker(String marker, int n) {
+        return " ".repeat(n) + marker + " ";
     }
 }

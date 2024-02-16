@@ -15,27 +15,31 @@ public class Plain {
 
     public static String toPlain(Map<String, Object> diff) {
         var builder = new StringBuilder();
-        if ("updated".equals(diff.get("type"))) {
-            builder.append("Property '")
+        String type = (String) diff.get("type");
+        switch (type) {
+            case "updated" -> builder
+                    .append("Property '")
                     .append(diff.get("name"))
                     .append("' was updated. From ")
-                    .append(formatValue(diff.get("oldValue")))
+                    .append(stringifyValue(diff.get("oldValue")))
                     .append(" to ")
-                    .append(formatValue(diff.get("newValue")));
-        } else if ("removed".equals(diff.get("type"))) {
-            builder.append("Property '")
+                    .append(stringifyValue(diff.get("newValue")));
+            case "removed" -> builder
+                    .append("Property '")
                     .append(diff.get("name"))
                     .append("' was removed");
-        } else if ("added".equals(diff.get("type"))) {
-            builder.append("Property '")
+            case "added" -> builder
+                    .append("Property '")
                     .append(diff.get("name"))
                     .append("' was added with value: ")
-                    .append(formatValue(diff.get("addedValue")));
+                    .append(stringifyValue(diff.get("addedValue")));
+            default -> {
+            }
         }
         return builder.toString();
     }
 
-    public static String formatValue(Object obj) {
+    public static String stringifyValue(Object obj) {
         if (obj == null) {
             return "null";
         } else if (obj instanceof String) {
