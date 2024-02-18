@@ -13,9 +13,9 @@ Differ представляет собой консольное приложен
 
 ### Установка
 Скопировать код и собрать командой\
-#make build\
+make build\
 Для получения справки по использованию выполнить\
-#make help
+make help
 
 ### Example 1:
 [![asciicast](https://asciinema.org/a/XU5D7niK07AMPZCEAKZtJRTat.svg)](https://asciinema.org/a/XU5D7niK07AMPZCEAKZtJRTat)
