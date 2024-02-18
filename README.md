@@ -6,6 +6,17 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/7dc44c3889d7e36be401/maintainability)](https://codeclimate.com/github/romcky/java-project-71/maintainability)
 ### Codeclimate test coverage:
 [![Test Coverage](https://api.codeclimate.com/v1/badges/7dc44c3889d7e36be401/test_coverage)](https://codeclimate.com/github/romcky/java-project-71/test_coverage)
+
+
+### Программа
+Differ представляет собой консольное приложение для сравнения содержимого двух файлов с набором параметров (поддерживаются форматы json и yml), результат выводится на экран в одном из трех вариантов на выбор (stylish, plain или json). 
+
+### Установка
+Скопировать код и собрать командой 
+make build
+Для получения справки по использованию выполнить
+make help
+
 ### Example 1:
 [![asciicast](https://asciinema.org/a/XU5D7niK07AMPZCEAKZtJRTat.svg)](https://asciinema.org/a/XU5D7niK07AMPZCEAKZtJRTat)
 ### Example 2:
