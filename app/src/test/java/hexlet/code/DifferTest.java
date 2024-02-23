@@ -14,13 +14,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.json.JsonMapper;
 
 class DifferTest {
-    private final String jsonFile1 = "src/test/resources/file1.json";
-    private final String jsonFile2 = "src/test/resources/file2.json";
-    private final String ymlFile1 = "src/test/resources/file1.yml";
-    private final String ymlFile2 = "src/test/resources/file2.yml";
-    private final String stylishExpected = getFileData("src/test/resources/diff.stylish");
-    private final String plainExpected = getFileData("src/test/resources/diff.plain");
-    private String jsonExpected = getFileData("src/test/resources/diff.json");
+    private final String jsonFile1 = "src/test/resources/fixtures/file1.json";
+    private final String jsonFile2 = "src/test/resources/fixtures/file2.json";
+    private final String ymlFile1 = "src/test/resources/fixtures/file1.yml";
+    private final String ymlFile2 = "src/test/resources/fixtures/file2.yml";
+    private final String stylishExpected = getFileData("src/test/resources/fixtures/diff.stylish");
+    private final String plainExpected = getFileData("src/test/resources/fixtures/diff.plain");
+    private String jsonExpected = getFileData("src/test/resources/fixtures/diff.json");
 
     @BeforeEach
     public void formatJsonExpected() {
@@ -46,6 +46,9 @@ class DifferTest {
             result = Differ.generate(jsonFile1, jsonFile2, "json");
             Assertions.assertEquals(result, jsonExpected);
 
+            result = Differ.generate(jsonFile1, jsonFile2, "stylish");
+            Assertions.assertEquals(result, stylishExpected);
+
             result = Differ.generate(ymlFile1, ymlFile2);
             Assertions.assertEquals(result, stylishExpected);
 
@@ -54,6 +57,10 @@ class DifferTest {
 
             result = Differ.generate(ymlFile1, ymlFile2, "json");
             Assertions.assertEquals(result, jsonExpected);
+
+            result = Differ.generate(ymlFile1, ymlFile2, "stylish");
+            Assertions.assertEquals(result, stylishExpected);
+
         } catch (Exception e) {
             throw new RuntimeException();
         }

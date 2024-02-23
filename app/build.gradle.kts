@@ -15,7 +15,6 @@ dependencies {
     implementation("info.picocli:picocli:4.7.5")
     implementation("com.fasterxml.jackson.core:jackson-databind:2.13.3")
     implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.13.3")
-    //implementation("org.junit.jupiter:junit-jupiter-params:5.8.2")
 }
 
 application {
@@ -30,17 +29,12 @@ testing {
     }
 }
 
-
 java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(20);
     }
 }
-/*
-tasks.test {
-    useJUnitPlatform()
-}
-*/
+
 tasks.test {
     finalizedBy(tasks.jacocoTestReport)
 }

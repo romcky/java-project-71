@@ -44,8 +44,7 @@ public class Stylish {
                     .append(diff.get("name"))
                     .append(": ")
                     .append(diff.get("addedValue"));
-            default -> {
-            }
+            default -> throw new RuntimeException();
         }
         return builder.toString();
     }

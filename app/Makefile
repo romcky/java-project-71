@@ -1,6 +1,9 @@
 build:
 	./gradlew clean build
 
+install:
+	./gradlew installDist
+
 test-json-stylish:
 	./build/install/app/bin/app src/test/resources/file1.json src/test/resources/file2.json
 
@@ -19,7 +22,7 @@ test-yaml-plain:
 test-yaml-json:
 	./build/install/app/bin/app src/test/resources/file1.yml src/test/resources/file2.yml --format json
 
-test-help:
+help:
 	./build/install/app/bin/app -h
 
 jacoco:

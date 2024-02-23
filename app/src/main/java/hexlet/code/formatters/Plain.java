@@ -33,8 +33,9 @@ public class Plain {
                     .append(diff.get("name"))
                     .append("' was added with value: ")
                     .append(stringifyValue(diff.get("addedValue")));
-            default -> {
+            case "unchanged" -> {
             }
+            default -> throw new RuntimeException();
         }
         return builder.toString();
     }
