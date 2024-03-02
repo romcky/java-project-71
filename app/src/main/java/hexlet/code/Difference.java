@@ -28,7 +28,9 @@ public final class Difference {
             case "updated":
                 diff.put("oldValue", map1.get(name));
                 diff.put("newValue", map2.get(name));
+                break;
             default:
+                throw new RuntimeException();
         }
         return diff;
     }

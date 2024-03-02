@@ -15,7 +15,7 @@ public class Stylish {
         return "{\n" + lines + "\n}";
     }
 
-    public static String toStylish(Map<String, Object> diff) {
+    private static String toStylish(Map<String, Object> diff) {
         var builder = new StringBuilder();
         String type = (String) diff.get("type");
         switch (type) {
